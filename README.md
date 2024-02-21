@@ -1,1 +1,1 @@
-"# faucet-bot-cron" 
+Cron job to automatically redeploy and ping the faucet xrp miner bot to ensure the server is running 24/7 without errors.
