@@ -1,8 +1,6 @@
-
 import fetch from 'node-fetch';
 import cron from 'node-cron';
 import fs from 'fs';
-//const fs = require('fs');
 
 // Load URLs and their frequencies from urls.json
 const urlsData = JSON.parse(fs.readFileSync('urls.json'));
@@ -22,10 +20,18 @@ const visitUrl = async (url) => {
     }
 };
 
-// Schedule cron jobs for each URL
+// Visit all URLs immediately upon script launch
+for (const url in urls) {
+    visitUrl(url);
+}
+
+// Schedule cron jobs for each URL [time based [in seconds]]
 for (const url in urls) {
     const frequencyInSeconds = urls[url];
     cron.schedule(`*/${frequencyInSeconds} * * * * *`, () => {
         visitUrl(url);
+    }, {
+        scheduled: true, // Schedule the job now
+        timezone: 'UTC', // Change the timezone if needed
     });
 }
