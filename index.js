@@ -1,6 +1,8 @@
-const cron = require('node-cron');
+
 import fetch from 'node-fetch';
-const fs = require('fs');
+import cron from 'node-cron';
+import fs from 'fs';
+//const fs = require('fs');
 
 // Load URLs and their frequencies from urls.json
 const urlsData = JSON.parse(fs.readFileSync('urls.json'));
